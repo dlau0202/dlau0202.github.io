@@ -1,4 +1,12 @@
-<iframe width="280" height="345" marginwidth="0" marginheight="0" 
-frameborder="0" scrolling="no" allowtransparency="true" 
-src="/hamlite/hamlite.html?start_mode=replay&start_move=61&size=XL&kifu={{ include.kifu }}">
+{% assign kifu_len = include.kifu | size %}
+{% assign move_cnt = kifu_len | divided_by: 2 %}
+{% assign auto_start_move = move_cnt | plus: 1 %}
+
+{% assign start_move = include.start_move | default: auto_start_move %}
+{% assign start_mode = include.start_mode | default: 'replay' %}
+{% assign size = include.size | default: 'XL' %}
+
+<iframe width="{{ include.width | default: '280' }}" height="{{ include.height | default: '345' }}"
+  marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"
+  src="/hamlite/hamlite.html?start_mode={{ start_mode }}{% if include.start_board %}&start_board={{ include.start_board | url_encode }}{% endif %}&start_move={{ start_move }}&size={{ size }}&kifu={{ include.kifu }}">
 </iframe>
