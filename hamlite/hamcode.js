@@ -117,7 +117,7 @@ var discSrc = [
 ];
 var useImage = 1;
 
-var solveEnabled = true;
+var solveEnabled = false;
 var solveNow = false;
 var solveStart = 61;
 var solveBestVal = -64;
