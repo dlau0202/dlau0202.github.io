@@ -1,12 +1,45 @@
-{% assign kifu_len = include.kifu | size %}
-{% assign move_cnt = kifu_len | divided_by: 2 %}
-{% assign auto_start_move = move_cnt | plus: 1 %}
+{%- assign kifu_raw = include.kifu | default: '' -%}
+{%- comment -%} sanitize kifu: remove spaces and line breaks {%- endcomment -%}
+{%- assign kifu_s1 = kifu_raw | replace: ' ', '' -%}
+{%- assign kifu_s2 = kifu_s1   | replace: '\n', '' -%}
+{%- assign kifu_s3 = kifu_s2   | replace: '\r', '' -%}
+{%- assign kifu_s4 = kifu_s3   | replace: '\t', '' -%}
+{%- assign kifu_clean = kifu_s4 -%}
 
-{% assign start_move = include.start_move | default: auto_start_move %}
-{% assign start_mode = include.start_mode | default: 'replay' %}
-{% assign size = include.size | default: 'XL' %}
+{%- assign kifu_len = kifu_clean | size -%}
+{%- assign move_cnt = kifu_len | divided_by: 2 -%}
+
+{%- comment -%}
+  If a custom start_board is provided, startMoveNo = (#black + #white) - 4 + 1.
+  Then the natural end position is startMoveNo + move_cnt.
+{%- endcomment -%}
+{%- assign start_board = include.start_board | default: '' -%}
+{%- assign sb64 = start_board | slice: 0, 64 -%}
+{%- assign cnt_X  = sb64 | split: 'X' | size | minus: 1 -%}
+{%- assign cnt_x  = sb64 | split: 'x' | size | minus: 1 -%}
+{%- assign cnt_ast= sb64 | split: '*' | size | minus: 1 -%}
+{%- assign cnt_O  = sb64 | split: 'O' | size | minus: 1 -%}
+{%- assign cnt_o  = sb64 | split: 'o' | size | minus: 1 -%}
+{%- assign cnt_at = sb64 | split: '@' | size | minus: 1 -%}
+{%- assign black_disc = cnt_X | plus: cnt_x | plus: cnt_ast -%}
+{%- assign white_disc = cnt_O | plus: cnt_o | plus: cnt_at -%}
+{%- assign discs_sum = black_disc | plus: white_disc -%}
+{%- assign start_move_no = discs_sum | minus: 4 | plus: 1 -%}
+{%- if start_move_no < 1 -%}{%- assign start_move_no = 1 -%}{%- endif -%}
+{%- assign auto_start_move = start_move_no | plus: move_cnt -%}
+
+{%- assign start_mode = include.start_mode | default: 'replay' -%}
+{%- assign size = include.size | default: 'XL' -%}
+
+{%- comment -%} clamp start_move to [1, min(61, auto_start_move)] {%- endcomment -%}
+{%- assign cap = auto_start_move -%}
+{%- if cap > 61 -%}{%- assign cap = 61 -%}{%- endif -%}
+{%- assign desired = include.start_move | default: cap -%}
+{%- if desired < 1 -%}{%- assign desired = 1 -%}{%- endif -%}
+{%- if desired > cap -%}{%- assign desired = cap -%}{%- endif -%}
+{%- assign start_move = desired -%}
 
 <iframe width="{{ include.width | default: '280' }}" height="{{ include.height | default: '345' }}"
   marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"
-  src="/hamlite/hamlite.html?start_mode={{ start_mode }}{% if include.start_board %}&start_board={{ include.start_board | url_encode }}{% endif %}&start_move={{ start_move }}&size={{ size }}&kifu={{ include.kifu }}">
+  src="/hamlite/hamlite.html?start_mode={{ start_mode }}{% if include.start_board %}&start_board={{ include.start_board | url_encode }}{% endif %}&start_move={{ start_move }}&size={{ size }}&kifu={{ kifu_clean | url_encode }}">
 </iframe>
