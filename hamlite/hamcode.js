@@ -47,7 +47,7 @@ var PUTMARK = "・";
 var PUTMARKSIZE = "100%";
 var STYLEPATH = "./style/";
 var SCRIPTPATH = "./script/";
-var IMAGEPATH = "./image/";
+var IMAGEPATH = "./";
 
 var vectAry = [10,9,8,1,-1,-8,-9,-10];
 var vtBoard = new Array(91);
@@ -108,12 +108,12 @@ var dot_step_width  = 0;
 
 var discImg = new Array(3);
 var discSrc = [
-	["./image/b32.png","./image/e32.png","./image/w32.png"],
-	["./image/b32.png","./image/e32.png","./image/w32.png"],
-	["./image/b32.png","./image/e32.png","./image/w32.png"],
-	["./image/b32.png","./image/e32.png","./image/w32.png"],
-	["./image/b32.png","./image/e32.png","./image/w32.png"],
-	["./image/b32.png","./image/e32.png","./image/w32.png"]
+	["./b32.png","./e32.png","./w32.png"],
+	["./b32.png","./e32.png","./w32.png"],
+	["./b32.png","./e32.png","./w32.png"],
+	["./b32.png","./e32.png","./w32.png"],
+	["./b32.png","./e32.png","./w32.png"],
+	["./b32.png","./e32.png","./w32.png"]
 ];
 var useImage = 1;
 
