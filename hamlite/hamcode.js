@@ -2175,10 +2175,10 @@ function selectCSS() {
 			discImg[2] = discSrc[0][2];
 			break;
 		default  :
-			tagString.href = STYLEPATH + "hamsize_S.css";
-			dot_offset_top = 17;
-			dot_offset_left = 2;
-			dot_step_width = 20;
+			tagString.href = STYLEPATH + "hamsizeXL.css";
+			dot_offset_top = 24;
+			dot_offset_left = 3;
+			dot_step_width = 29;
 			discImg[0] = discSrc[0][0];
 			discImg[1] = discSrc[0][1];
 			discImg[2] = discSrc[0][2];
