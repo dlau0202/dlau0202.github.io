@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
+<html lang="{{ site.lang | default: "en-US" }}">
   <head>
     <meta charset="UTF-8">
-    <title>{{ page.title | default: site.title | default: "My Awesome Blog" }}</title>
+    <title>{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
-
   <body>
-
-    <section class="page-header">
-        <h1 class="project-name">{{ site.title | default: "My Awesome Blog" }}</h1>
-        <h2 class="project-tagline">{{ site.description | default: "A blog about interesting things" }}</h2>
-    </section>
-
-    <section class="main-content">
-      
-      {{ content }}
-
-      <footer class="site-footer">
-        <span class="site-footer-owner">
-            This site is maintained by {{ site.author | default: "you" }}.
-        </span>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | escape }}</a></h1>
+        <p>{{ site.description | escape }}</p>
+      </header>
+      <section>
+        {{ content }}
+      </section>
+      <footer>
+        <p style="text-align: center;">
+          <span id="busuanzi_container_site_uv">
+            Total Visitors: <span id="busuanzi_value_site_uv"></span>
+          </span>
+          | 
+          <span id="busuanzi_container_site_pv">
+            Total Page Views: <span id="busuanzi_value_site_pv"></span>
+          </span>
+        </p>
       </footer>
-
-    </section>
+    </div>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
   </body>
 </html>
