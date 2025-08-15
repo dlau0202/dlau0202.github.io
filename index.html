@@ -2,16 +2,21 @@
 layout: default
 ---
 
+<div class="filter-bar">
+  <button class="filter-btn" data-filter="all">全部</button>
+  <button class="filter-btn" data-filter="自战解说">自战解说</button>
+  <button class="filter-btn" data-filter="开局篇">开局篇</button>
+  <button class="filter-btn" data-filter="中盘篇">中盘篇</button>
+  <button class="filter-btn" data-filter="尾盘篇">尾盘篇</button>
+  <button class="filter-btn" data-filter="推谱">推谱</button>
+</div>
+
 <div class="posts">
   {% for post in site.posts %}
-    <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
+    {% assign tag_list = post.tags | join: ',' %}
+    <article class="post" data-tags="{{ tag_list }}">
+      <h1 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+      <div class="entry">{{ post.excerpt }}</div>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">阅读全文</a>
     </article>
   {% endfor %}
