@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 title: Rokutousei's Othello Blog
 description: A blog for analyzing Reversi games.
+timezone: Asia/Shanghai

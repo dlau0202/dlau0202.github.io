@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
   <script src="{{ '/assets/js/filter.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/lock.js' | relative_url }}" defer></script>
+  <style>
+    #post-lock-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999}
+    .post-lock-card{background:#fff;padding:20px 24px;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.2);max-width:320px;width:calc(100% - 32px)}
+    .post-lock-card h3{margin:0 0 12px;font-size:16px}
+    .post-lock-card input{width:100%;padding:8px 10px;margin:6px 0 10px;border:1px solid #ccc;border-radius:4px}
+    .post-lock-card button{width:100%;padding:8px 10px;background:#2c7be5;color:#fff;border:none;border-radius:4px;cursor:pointer}
+    .post-lock-card button:hover{background:#1a68d8}
+    #post-lock-msg{color:#d93025;margin:6px 0 0}
+    .hidden{display:none}
+  </style>
   </head>
   <body>
     <div class="wrapper">

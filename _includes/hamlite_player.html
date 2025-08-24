@@ -13,7 +13,13 @@
   If a custom start_board is provided, startMoveNo = (#black + #white) - 4 + 1.
   Then the natural end position is startMoveNo + move_cnt.
 {%- endcomment -%}
-{%- assign start_board = include.start_board | default: '' -%}
+{%- assign sb_raw = include.start_board | default: '' -%}
+{%- comment -%} sanitize start_board: remove spaces and line breaks {%- endcomment -%}
+{%- assign sb_s1 = sb_raw | replace: ' ', '' -%}
+{%- assign sb_s2 = sb_s1 | replace: '\n', '' -%}
+{%- assign sb_s3 = sb_s2 | replace: '\r', '' -%}
+{%- assign sb_s4 = sb_s3 | replace: '\t', '' -%}
+{%- assign start_board = sb_s4 -%}
 {%- assign sb64 = start_board | slice: 0, 64 -%}
 {%- assign cnt_X  = sb64 | split: 'X' | size | minus: 1 -%}
 {%- assign cnt_x  = sb64 | split: 'x' | size | minus: 1 -%}
@@ -41,5 +47,5 @@
 
 <iframe width="{{ include.width | default: '280' }}" height="{{ include.height | default: '345' }}"
   marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"
-  src="/hamlite/hamlite.html?start_mode={{ start_mode }}{% if include.start_board %}&start_board={{ include.start_board | url_encode }}{% endif %}&start_move={{ start_move }}&size={{ size }}&kifu={{ kifu_clean | url_encode }}">
+  src="/hamlite/hamlite.html?start_mode={{ start_mode }}{% if start_board and start_board != '' %}&start_board={{ start_board | url_encode }}{% endif %}&start_move={{ start_move }}&size={{ size }}{% if kifu_len > 0 %}&kifu={{ kifu_clean | url_encode }}{% endif %}">
 </iframe>
