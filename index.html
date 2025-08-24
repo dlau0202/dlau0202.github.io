@@ -16,7 +16,7 @@ layout: default
     {% assign tag_list = post.tags | join: ',' %}
     <article class="post" data-tags="{{ tag_list }}">
       <h1 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-      <div class="entry">{{ post.excerpt }}</div>
+  <div class="entry">{{ post.excerpt | strip_html }}</div>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">阅读全文</a>
     </article>
   {% endfor %}
