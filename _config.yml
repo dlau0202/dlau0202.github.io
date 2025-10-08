@@ -4,9 +4,9 @@ description: A blog for analyzing Reversi games.
 timezone: Asia/Shanghai
 
 encrypt_content:
-	message: "此内容已加密，需要输入密码才能查看。"
-	prompt: "请输入密码解锁本篇文章："
-	error: "密码错误，请重试。"
-	button: "解锁"
-	loading: "解锁中…"
-	iterations: 210000
+  message: "此内容已加密，需要输入密码才能查看。"
+  prompt: "请输入密码解锁本篇文章："
+  error: "密码错误，请重试。"
+  button: "解锁"
+  loading: "解锁中…"
+  iterations: 210000
