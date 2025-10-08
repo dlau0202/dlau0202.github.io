@@ -44,3 +44,70 @@ section { margin-top: 10px; }
 @media (min-width: 768px) {
   .posts { grid-template-columns: 1fr; }
 }
+
+/* Encrypted content styles */
+.encrypted-content-wrapper {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px 20px;
+  background: linear-gradient(135deg, #f9fbff 0%, #f3f5ff 100%);
+  margin: 24px 0;
+  box-shadow: 0 4px 18px rgba(74, 144, 226, 0.12);
+}
+
+.encrypted-content-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.encrypted-message {
+  margin: 0;
+  font-weight: 600;
+  color: #2a5ea8;
+}
+
+.encrypted-label {
+  font-size: 14px;
+  color: #34495e;
+}
+
+.encrypted-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.encrypted-input {
+  flex: 1 1 220px;
+  padding: 10px 12px;
+  border: 1px solid #b5cef3;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.encrypted-button {
+  padding: 10px 20px;
+  background: #4a90e2;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.encrypted-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.encrypted-button:not(:disabled):hover {
+  background: #3a7acc;
+}
+
+.encrypted-error {
+  margin: 0;
+  font-size: 14px;
+  color: #d64545;
+}
